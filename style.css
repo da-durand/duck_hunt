@@ -9,7 +9,7 @@ section{
     position: relative;
 }
 
-.ducks{
+.duck{
     position: absolute;
     display: inline-block;
     background-color: black;

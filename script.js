@@ -2,38 +2,36 @@ var screenElement = document.createElement("section");
 document.body.appendChild(screenElement);
 
 
-function ducksKill(){
-    this.remove();
+function createDuck(){
     var duckElement = document.createElement("div");
-    duckElement.className = "ducks";
+    duckElement.className = "duck";
     screenElement.appendChild(duckElement);
-    duckElement.style.left = Math.floor(Math.random() * 960) + "px";
-    duckElement.style.top = Math.floor(Math.random() * 560) + "px";
-    duckElement.addEventListener("click", ducksKill);
-};
-
-
-for (let i = 0; i < 15; i++) {
-    var duckElement = document.createElement("div");
-    duckElement.className = "ducks";
-    screenElement.appendChild(duckElement);
-    duckElement.style.left = Math.floor(Math.random() * 960) + "px";
-    duckElement.style.top = Math.floor(Math.random() * 560) + "px";
+    setRandomPosition(duckElement);
     duckElement.addEventListener("click", ducksKill);
 }
 
+function setRandomPosition(duck) {
+    duck.style.left = Math.floor(Math.random() * 960) + "px";
+    duck.style.top = Math.floor(Math.random() * 560) + "px";
+}
 
+function ducksKill() {
+    this.remove();
+    createDuck();
+};
 
+for (let i = 0; i < 15; i++) {
+    createDuck();
+}
 
 function ducksMove() {
 
-    allDucks = document.getElementsByClassName("ducks")
+    allDucks = document.getElementsByClassName("duck")
     for (let i = 0; i < allDucks.length; i++) {
-        allDucks[i].style.left = Math.floor(Math.random() * 980) + "px";
-        allDucks[i].style.top = Math.floor(Math.random() * 580) + "px";
+        setRandomPosition(allDucks[i]);
         allDucks[i].style.transitionDuration = "3s";
     }
 
 }
 
-setInterval(ducksMove, 1000);
+setInterval(ducksMove, 2000);
